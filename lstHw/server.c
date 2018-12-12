@@ -6,6 +6,8 @@
  * 2018.11.29
  * 2018.12.07 uts complete!
  * 2018.12.08 info complete! -- TODO: may be need to function
+ * 2018.12.09 conf part
+ * 2018.12.12 commit
  */
 
 
@@ -16,8 +18,10 @@
 #include<pthread.h>
 #include<string.h>
 
-#include<sys/utsname.h>
-#include<sys/sysinfo.h>
+#include<sys/utsname.h> // for uts
+#include<sys/sysinfo.h> // for info
+
+#include<unistd.h> //for conf
 
 //5. define app protocol
 #define CT_ADD 0x01  //cmd type = CT, value :16
@@ -39,6 +43,23 @@
 #define CT_TOTALSWAP 0X18
 #define CT_FREESWAP 0X19
 #define CT_PROCS 0X20
+#define CT_BLANK 0x21 // blank
+//------------------conf structure---------------------
+#define CT_ARG 0x30 
+#define CT_CHILD 0x31 
+#define CT_HOSTNAME 0x32 
+#define CT_LOGINNAME 0x33 
+#define CT_NGROUPS 0x34 
+#define CT_CLKTCK 0x35 
+#define CT_OPEN 0x36 
+#define CT_PAGESIZE 0x37 
+#define CT_REDUP 0x38 
+#define CT_STREAM 0x39 
+#define CT_SYMLOOP 0x40 
+#define CT_TTYNAME 0x41 
+#define CT_TZNAME 0x42
+#define CT_CONFVERSION 0x43 
+
 
 #define CT_DIS 0x98  //disconnect
 #define CT_QUIT 0x99
@@ -119,6 +140,8 @@ void * thread_service(void * param)
 	//2. info struct
 	struct sysinfo info;
 	sysinfo(&info);
+
+	//3. conf no struct
 
 	conn_sd = (int) param;
 	//printf("OS name : %s \n",uts.sysname);
@@ -213,9 +236,84 @@ void * thread_service(void * param)
 				break;
 
 
+//------------------------------info----------------------------------------------------
+			
+			
+			case CT_ARG:
+				packet.arg4 = sysconf(_SC_ARG_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+
+			case CT_CHILD:
+				packet.arg4 = sysconf(_SC_CHILD_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_HOSTNAME:
+				packet.arg4 = sysconf(_SC_HOST_NAME_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_LOGINNAME:
+				packet.arg4 = sysconf(_SC_LOGIN_NAME_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_NGROUPS:
+				packet.arg4 = sysconf(_SC_NGROUPS_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_CLKTCK:
+				packet.arg4 = sysconf(_SC_CLK_TCK);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_OPEN:
+				packet.arg4 = sysconf(_SC_OPEN_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_PAGESIZE:
+				packet.arg4 = sysconf(_SC_PAGESIZE);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_REDUP:
+				packet.arg4 = sysconf(_SC_RE_DUP_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_STREAM:
+				packet.arg4 = sysconf(_SC_STREAM_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_SYMLOOP:
+				packet.arg4 = sysconf(_SC_SYMLOOP_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_TTYNAME:
+				packet.arg4 = sysconf(_SC_TTY_NAME_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_TZNAME:
+				packet.arg4 = sysconf(_SC_TZNAME_MAX);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_CONFVERSION:
+				packet.arg4 = sysconf(_SC_VERSION);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
 
 			case CT_DIS:
 				break;
+
+
 			case CT_QUIT:
 				break;
 		}

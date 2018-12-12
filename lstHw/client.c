@@ -37,6 +37,21 @@
 #define CT_FREESWAP 0X19
 #define CT_PROCS 0X20
 
+//------------------conf structure---------------------
+#define CT_ARG 0x30 
+#define CT_CHILD 0x31 
+#define CT_HOSTNAME 0x32 
+#define CT_LOGINNAME 0x33 
+#define CT_NGROUPS 0x34 
+#define CT_CLKTCK 0x35 
+#define CT_OPEN 0x36 
+#define CT_PAGESIZE 0x37 
+#define CT_REDUP 0x38 
+#define CT_STREAM 0x39 
+#define CT_SYMLOOP 0x40 
+#define CT_TTYNAME 0x41 
+#define CT_TZNAME 0x42
+#define CT_CONFVERSION 0x43 
 
 #define CT_DIS 0x98  //disconnect
 #define CT_QUIT 0x99
@@ -325,6 +340,178 @@ int main(int agrc, char *argv[])
 				printf("\n");
 				sleep(1);
 				break;
+//------------------------------info----------------------------------------------------
+
+			case 20:
+				packet.cmd_type = CT_ARG;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 21:
+				packet.cmd_type = CT_CHILD;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 22:
+				packet.cmd_type = CT_HOSTNAME;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 23:
+				packet.cmd_type = CT_LOGINNAME;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 24:
+				packet.cmd_type = CT_NGROUPS;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 25:
+				packet.cmd_type = CT_CLKTCK;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 26:
+				packet.cmd_type = CT_OPEN;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 27:
+				packet.cmd_type = CT_PAGESIZE;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 28:
+				packet.cmd_type = CT_REDUP;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 29:
+				packet.cmd_type = CT_STREAM;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 30:
+				packet.cmd_type = CT_SYMLOOP;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 31:
+				packet.cmd_type = CT_TTYNAME;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 32:
+				packet.cmd_type = CT_TZNAME;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			case 33:
+				packet.cmd_type = CT_CONFVERSION;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > %ld \n", packet.arg4);
+				printf("\n");
+				sleep(1);
+				break;
+			//case 40:
+				
 
 		}
 	}
