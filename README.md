@@ -6,3 +6,11 @@
 1. uts 구조체
 2. info 구조체
 3. conf
+
+
+
+----------------------------------
+Ubuntu vi
+git 설치 bash 명령어
+
+http://webdir.tistory.com/222
