@@ -25,6 +25,6 @@ https://git-scm.com/book/ko/v2/Appendix-C%3A-Git-%EB%AA%85%EB%A0%B9%EC%96%B4-%ED
 
 git remote
 
-1.add
-2.commit
-3.push
+1.add \n
+2.commit \n
+3.push \n
