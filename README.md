@@ -25,6 +25,12 @@ https://git-scm.com/book/ko/v2/Appendix-C%3A-Git-%EB%AA%85%EB%A0%B9%EC%96%B4-%ED
 
 git remote
 
+
+
+git 
+
 1.add \n
 2.commit \n
+git -m 메세지
 3.push \n
+https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
