@@ -6,7 +6,7 @@
  * 2018.12.05 Calc Func ADD SUB - client complete!
  * 2018.12.07 uts complete!
  * 2018.12.08 info complete! TODO: menu, casees's printf byte %&
- *
+ * 2018.12.13 printf 
  */
 #include<stdio.h>
 #include<sys/socket.h>
@@ -25,6 +25,7 @@
 #define CT_VERSION 0x05
 #define CT_MACHINE 0x06
 //-------------------info structure----------------
+
 #define CT_UPTIME 0x10
 #define CT_LOADS_1 0x11
 #define CT_LOADS_5 0x12
@@ -72,6 +73,20 @@ void printmenu(){
 	printf("4.nodename(uts.nodename)\n");
 	printf("5.Server OS version (uts.version)\n");
 	printf("6.Server OS Architecture (uts.machine)\n");
+	printf("7.Server OS Architecture (info.uptime)\n");
+	printf("8.Server OS Architecture (info.loads[0])\n");
+	printf("9.Server OS Architecture (info.loads[1])\n");
+	printf("10.Server OS Architecture (info.loads[2])\n");
+	printf("11.Server OS Architecture (info.totalram)\n");
+	printf("12.Server OS Architecture (info.freeram)\n");
+	printf("13.Server OS Architecture (info.sharedram)\n");
+	printf("14.Server OS Architecture (info.bufferram)\n");
+	printf("15.Server OS Architecture (info.totalswap)\n");
+	printf("16.Server OS Architecture (info.freeswap)\n");
+	printf("17.Server OS Architecture (info.procs)\n");
+
+
+
 	printf("3.Quit\n");
 }
 
