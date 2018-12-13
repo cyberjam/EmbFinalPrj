@@ -29,6 +29,7 @@ git remote
 
 git 
 
+올리기
 1.add
 2.commit
 git -m 메세지
@@ -36,3 +37,7 @@ git -m 메세지
 3.push
 
 https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
+
+4. pull
+변경된 내용 클라이언트로 받기
+//md 변경 했다고 받는 건 너무 비효율 TODO: 효율적  // 원하는 line만 동기화는? 
