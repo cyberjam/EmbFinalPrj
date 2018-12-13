@@ -29,8 +29,10 @@ git remote
 
 git 
 
-1.add \n
-2.commit \n
+1.add
+2.commit
 git -m 메세지
-3.push \n
+
+3.push
+
 https://www.zerocho.com/category/Git/post/580f633046f4fe09815b72a5
