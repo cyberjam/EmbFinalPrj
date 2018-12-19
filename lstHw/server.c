@@ -9,6 +9,7 @@
  * 2018.12.09 conf part
  * 2018.12.12 commit
  * 2018.12.13 printf
+ * 2018.12.19 printf2
  */
 
 
@@ -61,6 +62,8 @@
 #define CT_TZNAME 0x42
 #define CT_CONFVERSION 0x43 
 
+#define CT_GETHOSTNAME 0x50
+
 
 #define CT_DIS 0x98  //disconnect
 #define CT_QUIT 0x99
@@ -71,7 +74,7 @@ typedef struct tagPacket{
 	int arg2;
 	int arg3; //result value
 	long arg4; // Using struct 1. info
-	char msg[256]; //Using struct 1.uts,
+	char msg[256]; //Using 1.uts, 2.gethostname(40)
 }NPACKET;
 
 void * thread_service(void * param);
@@ -237,7 +240,7 @@ void * thread_service(void * param)
 				break;
 
 
-//------------------------------info----------------------------------------------------
+//------------------------------conf----------------------------------------------------
 			
 			
 			case CT_ARG:
@@ -308,6 +311,11 @@ void * thread_service(void * param)
 
 			case CT_CONFVERSION:
 				packet.arg4 = sysconf(_SC_VERSION);
+				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
+				break;
+
+			case CT_GETHOSTNAME:
+				gethostname(packet.msg, sizeof(packet.msg));
 				send(conn_sd, (char *)&packet, sizeof(NPACKET),0);
 				break;
 

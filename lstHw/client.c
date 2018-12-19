@@ -54,6 +54,7 @@
 #define CT_TZNAME 0x42
 #define CT_CONFVERSION 0x43 
 
+#define CT_GETHOSTNAME 0x50
 #define CT_DIS 0x98  //disconnect
 #define CT_QUIT 0x99
 
@@ -68,7 +69,7 @@ typedef struct tagPacket{
 
 void printmenu(){
 	printf("================Command=====================\n");
-	printf("1.ADD\n");
+	printf("1.SERVER TEST FUNC - ADD\n");
 	printf("2.OSname(uts.sysname)\n");
 	printf("4.nodename(uts.nodename)\n");
 	printf("5.Server OS version (uts.version)\n");
@@ -85,7 +86,22 @@ void printmenu(){
 	printf("16.Server OS Architecture (info.freeswap)\n");
 	printf("17.Server OS Architecture (info.procs)\n");
 
+	printf("20.Server OS Architecture (_SC_ARG_MAX)\n");
+	printf("21.Server OS Architecture (_SC_CHILD_MAX)\n");
+	printf("22.Server OS Architecture (_SC_HOST_NAME_MAX)\n");
+	printf("23.Server OS Architecture (_SC_LOGIN_NAME_MAX)\n");
+	printf("24.Server OS Architecture (_SC_NGROUPS_MAX)\n");
+	printf("25.Server OS Architecture (_SC_CLK_TCK)\n");
+	printf("26.Server OS Architecture (_SC_OPEN_MAX)\n");
+	printf("27.Server OS Architecture (_SC_PAGESIZE)\n");
+	printf("28.Server OS Architecture (_SC_RE_DUP_MAX)\n");
+	printf("29.Server OS Architecture (_SC_STREAM_MAX)\n");
+	printf("30.Server OS Architecture (_SC_SYMLOOP_MAX)\n");
+	printf("31.Server OS Architecture (_SC_TTY_NAME_MAX)\n");
+	printf("32.Server OS Architecture (_SC_TZNAME_MAX)\n");
+	printf("33.Server OS Architecture (_SC_VERSION)\n");
 
+	printf("40.Server Host Name\n");
 
 	printf("3.Quit\n");
 }
@@ -525,7 +541,19 @@ int main(int agrc, char *argv[])
 				printf("\n");
 				sleep(1);
 				break;
-			//case 40:
+//gethostname()
+			case 40:
+				packet.cmd_type = CT_GETHOSTNAME;
+				if((sendbytes = send(sd, (char *)&packet, sizeof(NPACKET), 0)) < 0){
+					perror("send fail:");
+				}
+				if((receivedbytes = recv(sd, (char *)&packet, sizeof(NPACKET), 0)) <0){
+					perror("send fail: ");
+				}
+				printf("SERVER > My hostname : %s \n", packet.msg);
+				printf("\n");
+				sleep(1);
+				break;
 				
 
 		}
